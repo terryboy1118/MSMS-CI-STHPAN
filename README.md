@@ -1,81 +1,90 @@
-# CI-STHPAN: Pre-Trained Attention Network for Stock Selection with Channel-Independent Spatio-Temporal Hypergraph [[paper pdf]](https://ojs.aaai.org/index.php/AAAI/article/view/28770)
+# MSMS-CI-STHPAN
 
-![Overview of the proposed CI-STHPAN.](./imgs/overview.png)
+Quantitative stock selection remains a complex challenge due to the multi-structural and non-stationary nature of financial markets. To address this, we propose **MSMS-DTW** (Market-Segmented Multi-Scale Dynamic Time Warping), a similarity-fusion method that enhances temporal alignment and interpretability.
 
-Quantitative stock selection is one of the most challenging FinTech tasks due to the non-stationary dynamics and complex market dependencies. Existing studies rely on channel mixing methods, exacerbating the issue of distribution shift in financial time series. Additionally, complex model structures they build make it difficult to handle very long sequences. Furthermore, most of them are based on predefined stock relationships thus making it difficult to capture the dynamic and highly volatile stock markets. To address the above issues, in this paper, we propose Channel-Independent based Spatio-Temporal Hypergraph Pre-trained Attention Networks (CI-STHPAN), a two-stage framework for stock selection, involving Transformer and HGAT based stock time series self-supervised pre-training and stock-ranking based downstream task fine-tuning. We calculate the similarity of stock time series of different channel in dynamic intervals based on Dynamic Time Warping (DTW), and further construct channel-independent stock dynamic hypergraph based on the similarity. Experiments with NASDAQ and NYSE markets data over five years show that our framework outperforms SOTA approaches in terms of investment return ratio (IRR) and Sharpe ratio (SR). Additionally, we find that even without introducing graph information, self-supervised learning based on the vanilla Transformer Encoder also surpasses SOTA results. Notable improvements are gained on the NYSE market. It is mainly attributed to the improvement of fine-tuning approach on Information Coefficient (IC) and Information Ratio based IC (ICIR), indicating that the fine-tuning method enhances the accuracy and stability of the model prediction.
+MSMS-DTW segments the market timeline using the **turning points of a benchmark stock** and restricts DTW computation to stocks within the same segment, thus preserving **phase-specific dynamics**.
 
-## Install environment
+By incorporating **multi-scale segmentation** and **DTW normalization**, our method captures localized synchronization patterns and mitigates the temporal-distortion issues present in global DTW. We further integrate MSMS-DTW into the **CI-STHPAN** (Channel-Independent Spatio-Temporal Hypergraph Pretrained Attention Network) framework, leveraging channel-wise independence and hypergraph structures for robust stock-relation modeling.
 
-Init environment using conda
+> 📈 **On the NASDAQ dataset**, the enhanced model achieves  
+> **Internal Rate of Return (IRR):** 0.92297  
+> **Sharpe Ratio (SR):** 2.20432  
+> — significantly outperforming diverse baselines.
 
-```
+---
+
+## 🔍 Keywords
+
+`Stock Selection` · `Dynamic Time Warping` · `Market Segmentation` · `Hypergraph Neural Network` · `Transformer`
+
+---
+
+## 📚 Table of Contents
+
+- [📦 Installation](#-installation)  
+- [🚀 Quick Example](#-quick-example)  
+- [🧠 Model Overview](#-model-overview)  
+- [📊 Experimental Results](#-experimental-results)  
+- [📁 Project Structure](#-project-structure)
+
+---
+
+## 📦 Installation
+
+```bash
+# 1. Create and activate conda env
 conda create -n ci-sthpann python=3.10.12
-
 conda activate ci-sthpann
-```
 
-Install pytorch
-
-```
+# 2. Install PyTorch (CUDA 11.8)
 conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
-```
 
-Install torch geometric: Please follow [these instructions](https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html).
-For our environment, we use the command:
-
-```
+# 3. Install PyTorch Geometric (PyG)
 conda install pyg -c pyg
-```
 
-Install other packages:
-
-```
+# 4. Other Python packages
 pip install -r requirements.txt
 ```
 
-## Data & Models
+---
 
-Datasets: [Link](https://pan.baidu.com/s/12SgBKg50pG-F3SpQA_x0tQ) Code: 2vqs
+## 🚀 Quick Example
 
-Pretrained models：[Link](https://pan.baidu.com/s/1HGJ0sAriVLRhc7KqkLC51w) Code: h729
+Demonstration of how to pre-train and fine-tune the model on hypergraphs constructed using Wiki-based relations (NASDAQ dataset).
 
-## Example
+```bash
+# Pre-train the model
+cd CI-STHPAN_self_supervised
+bash scripts/pretrain/pre_graph_dtw.sh
 
-Pre-training and fine-tuning of hypergraphs constructed based on wikidata relations on NASDAQ is shown here as an example.
-
-### Pretrain
-
-```
-cd ./CI-STHPAN_self_supervised
-bash ./scripts/pretrain/pre_graph_dtw.sh
+# Fine-tune the model (choose script as needed)
+bash scripts/finetune/[28]graph_dtw.sh
 ```
 
-### Finetune
+---
 
-```
-cd ./CI-STHPAN_self_supervised
-bash ./scripts/finetune/[28]graph_dtw.sh
-```
+## 🧠 Model Overview
 
-import torch
+<p align="center">
+  <img src="figures/model_architecture.png" alt="Model Overview" width="800"/>
+</p>
 
-print(torch.cuda.is_available())
+- **CI-STHPAN** serves as the base architecture for time-series and graph relational modeling.
+- **MSMS-DTW** handles market-aware segmentation and similarity measurement.
+- The constructed **hypergraph** captures multi-stock relations with higher-order dynamics.
 
-import torch
-import torch.nn as nn
+---
 
-class Gate(nn.Module):
-    def __init__(self, d_input, d_output, beta=1.0):
-        super().__init__()
-        self.trans = nn.Linear(d_input, d_output)
-        self.d_output = d_output
-        self.t = beta
+## 📊 Experimental Results
 
-    def forward(self, gate_input):
-        output = self.trans(gate_input)  # 線性轉換
-        output = torch.softmax(output / self.t, dim=-1)  # 溫度調節的 softmax
-        return self.d_output * output
+| Dataset | Model                 | IRR     | Sharpe Ratio |
+|---------|------------------------|---------|---------------|
+| NASDAQ | CI-STHPAN (baseline)  | 0.67712 | 1.32892       |
+| NASDAQ | MSMS-CI-STHPAN (ours) | **0.92297** | **2.20432**       |
+| NYSE   | CI-STHPAN (baseline)  | 0.61387 | 1.15443       |
+| NYSE   | MSMS-CI-STHPAN (ours) | **0.83225** | **1.90761**       |
 
-# MSMS-CI-STHPAN
-# MSMS-CI-STHPAN
-# MSMS-CI-STHPAN
+> 🔬 Metrics include Internal Rate of Return (IRR) and Sharpe Ratio (SR). Experiments are conducted under fixed seeds and repeated runs.
+---
+
+For any questions, please contact `lin.syuan@example.com`. Contributions and pull requests are welcome!
