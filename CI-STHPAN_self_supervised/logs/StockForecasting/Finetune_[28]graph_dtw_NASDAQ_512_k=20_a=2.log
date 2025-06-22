@@ -1,0 +1,55 @@
+args: Namespace(random_seed=2023, is_finetune=1, is_linear_probe=0, dset_finetune='stock', context_points=512, target_points=1, batch_size=1, num_workers=10, scaler='standard', features='M', market='NASDAQ', patch_len=12, stride=12, revin=1, ci=1, graph=1, rel_type=3, k=20, n_layers=3, n_heads=16, d_model=128, d_ff=256, dropout=0.2, head_dropout=0.0, n_epochs_finetune=20, lr=0.0001, alpha=2, pretrained_model=None, finetuned_model_id=1, model_type='based_model')
+use GPU: 0
+#datautilis tickers_fname: NASDAQ_tickers_qualify_dr-0.98_min-5_smooth.csv
+#tickers selected: 1026
+#single EOD data shape: (756, 5)
+[D] [00:51:00.504554] /opt/conda/conda-bld/work/cpp/src/tsne/tsne_runner.cuh:69 Data size = (25205, 467) with dim = 2 perplexity = 40.000000
+[W] [00:51:00.504588] # of Nearest Neighbors should be at least 3 * perplexity. Your results might be a bit strange...
+[D] [00:51:00.504593] /opt/conda/conda-bld/work/cpp/src/tsne/tsne_runner.cuh:107 Getting distances.
+[D] [00:51:00.568814] /opt/conda/conda-bld/work/cpp/src/tsne/tsne_runner.cuh:142 Now normalizing distances so exp(D) doesn't explode.
+[D] [00:51:00.571982] /opt/conda/conda-bld/work/cpp/src/tsne/tsne_runner.cuh:150 Searching for optimal perplexity via bisection search.
+[D] [00:51:01.006307] /opt/conda/conda-bld/work/python/build/cp310-cp310-manylinux_2_35_x86_64/cuml/internals/logger.cxx:5250 [t-SNE] KL divergence: 0.2639317214488983
+plotting TSNE
+#eod_data shape: (1026, 756, 5)
+#masks shape: (1026, 756)
+#ground_truth shape: (1026, 756)
+#base_price shape: (1026, 756)
+#data_stamp shape: (1026, 756, 4)
+#tickers selected: 1026
+#single EOD data shape: (764, 5)
+[D] [01:03:33.868453] /opt/conda/conda-bld/work/python/build/cp310-cp310-manylinux_2_35_x86_64/cuml/internals/logger.cxx:5250 Learning rate is adaptive. In TSNE paper, it has been shown that as n->inf, Barnes Hut works well if n_neighbors->30, learning_rate->20000, early_exaggeration->24.
+[D] [01:03:33.868488] /opt/conda/conda-bld/work/python/build/cp310-cp310-manylinux_2_35_x86_64/cuml/internals/logger.cxx:5250 cuML uses an adpative method.n_neighbors decreases to 30 as n->inf. Likewise for the other params.
+[D] [01:03:33.868500] /opt/conda/conda-bld/work/python/build/cp310-cp310-manylinux_2_35_x86_64/cuml/internals/logger.cxx:5250 New n_neighbors = 71, learning_rate = 8401.666666666666, exaggeration = 24.0
+[D] [01:03:33.868521] /opt/conda/conda-bld/work/cpp/src/tsne/tsne_runner.cuh:69 Data size = (25205, 467) with dim = 2 perplexity = 40.000000
+[W] [01:03:33.868525] # of Nearest Neighbors should be at least 3 * perplexity. Your results might be a bit strange...
+[D] [01:03:33.868529] /opt/conda/conda-bld/work/cpp/src/tsne/tsne_runner.cuh:107 Getting distances.
+[D] [01:03:33.921833] /opt/conda/conda-bld/work/cpp/src/tsne/tsne_runner.cuh:142 Now normalizing distances so exp(D) doesn't explode.
+[D] [01:03:33.921888] /opt/conda/conda-bld/work/cpp/src/tsne/tsne_runner.cuh:150 Searching for optimal perplexity via bisection search.
+[D] [01:03:34.382825] /opt/conda/conda-bld/work/python/build/cp310-cp310-manylinux_2_35_x86_64/cuml/internals/logger.cxx:5250 [t-SNE] KL divergence: 0.26140493154525757
+plotting TSNE
+#eod_data shape: (1026, 764, 5)
+#masks shape: (1026, 764)
+#ground_truth shape: (1026, 764)
+#base_price shape: (1026, 764)
+#data_stamp shape: (1026, 764, 4)
+#tickers selected: 1026
+#single EOD data shape: (749, 5)
+[D] [01:16:07.072653] /opt/conda/conda-bld/work/python/build/cp310-cp310-manylinux_2_35_x86_64/cuml/internals/logger.cxx:5250 Learning rate is adaptive. In TSNE paper, it has been shown that as n->inf, Barnes Hut works well if n_neighbors->30, learning_rate->20000, early_exaggeration->24.
+[D] [01:16:07.072687] /opt/conda/conda-bld/work/python/build/cp310-cp310-manylinux_2_35_x86_64/cuml/internals/logger.cxx:5250 cuML uses an adpative method.n_neighbors decreases to 30 as n->inf. Likewise for the other params.
+[D] [01:16:07.072699] /opt/conda/conda-bld/work/python/build/cp310-cp310-manylinux_2_35_x86_64/cuml/internals/logger.cxx:5250 New n_neighbors = 71, learning_rate = 8401.666666666666, exaggeration = 24.0
+[D] [01:16:07.072720] /opt/conda/conda-bld/work/cpp/src/tsne/tsne_runner.cuh:69 Data size = (25205, 467) with dim = 2 perplexity = 40.000000
+[W] [01:16:07.072731] # of Nearest Neighbors should be at least 3 * perplexity. Your results might be a bit strange...
+[D] [01:16:07.072735] /opt/conda/conda-bld/work/cpp/src/tsne/tsne_runner.cuh:107 Getting distances.
+[D] [01:16:07.121269] /opt/conda/conda-bld/work/cpp/src/tsne/tsne_runner.cuh:142 Now normalizing distances so exp(D) doesn't explode.
+[D] [01:16:07.121324] /opt/conda/conda-bld/work/cpp/src/tsne/tsne_runner.cuh:150 Searching for optimal perplexity via bisection search.
+[D] [01:16:07.575274] /opt/conda/conda-bld/work/python/build/cp310-cp310-manylinux_2_35_x86_64/cuml/internals/logger.cxx:5250 [t-SNE] KL divergence: 0.2666201889514923
+plotting TSNE
+#eod_data shape: (1026, 749, 5)
+#masks shape: (1026, 749)
+#ground_truth shape: (1026, 749)
+#base_price shape: (1026, 749)
+#data_stamp shape: (1026, 749, 4)
+number of patches: 42
+number of model params 1876097
+weights from /home/adam/CI-STHPAN-main/CI-STHPAN_self_supervised/scripts/finetune/saved_models/NASDAQ/finetuned/../pretrained/patchtst_pretrained_cw512_patch12_stride12_epochs-pretrain100_mask0.4_revin1_ci1_graph1_rel_type3_k20/model0/model.pth successfully transferred!
+
