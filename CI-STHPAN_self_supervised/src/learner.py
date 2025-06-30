@@ -227,7 +227,33 @@ class Learner(GetAttr):
                     else:
                         hyperedge_index = np.load(os.path.join('..', '..', 'src/data/datasets/stock/relation/wiki_dtw',
                                                             self.market + '_wiki_dtw_relation_valid_mix.npy'))
-            
+            #MSMSDTW-min
+            elif self.rel_type == 7:
+                # channel independent
+                if self.ci == 1:
+                    if flag == 'train':
+                        file_path = f"/home/adam/CI-STHPAN-main/CI-STHPAN_self_supervised/src/data/datasets/stock/relation/MSMSDTW-min/dtw_train_matrix_min_{self.market}_binary.npy"
+                        hyperedge_index = np.load(file_path)
+                    else:
+                        file_path = f"/home/adam/CI-STHPAN-main/CI-STHPAN_self_supervised/src/data/datasets/stock/relation/MSMSDTW-min/dtw_valid_matrix_min_{self.market}_binary.npy"
+                        hyperedge_index = np.load(file_path)
+                # channel mixing
+                else:
+                    print('❌ 尚未製作 MSMSDTW-min 的 mixing 版本')
+            # MSMSDTW-mean
+            elif self.rel_type == 8:
+                # channel independent
+                if self.ci == 1:
+                    if flag == 'train':
+                        file_path = f"/home/adam/CI-STHPAN-main/CI-STHPAN_self_supervised/src/data/datasets/stock/relation/MSMSDTW-mean/dtw_train_matrix_mean_{self.market}_binary_ci.npy"
+                        hyperedge_index = np.load(file_path)
+                    else:
+                        file_path = f"/home/adam/CI-STHPAN-main/CI-STHPAN_self_supervised/src/data/datasets/stock/relation/MSMSDTW-mean/dtw_valid_matrix_mean_{self.market}_binary_ci.npy"
+                        hyperedge_index = np.load(file_path)
+                # channel mixing
+                else:
+                    print('❌ 尚未製作 MSMSDTW-mean 的 mixing 版本')  
+                                              
             if self.ci == 1:
                 hyperedge_index = torch.from_numpy(hyperedge_index)
                 #print(hyperedge_index.shape)
