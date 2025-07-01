@@ -33,12 +33,12 @@ By incorporating **multi-scale segmentation** and **DTW normalization**, our met
 
 ```bash
 # 1. Create and activate conda env
-conda create -n ci-sthpann python=3.10.12
-conda activate ci-sthpann
+conda create -n MSMSDTW3 python=3.10.12
+conda activate MSMSDTW3
 
 # 2. Install PyTorch (CUDA 11.8)
 conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
-
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 # 3. Install PyTorch Geometric (PyG)
 conda install pyg -c pyg
 
@@ -55,10 +55,10 @@ Demonstration of how to pre-train and fine-tune the model on hypergraphs constru
 ```bash
 # Pre-train the model
 cd CI-STHPAN_self_supervised
-bash scripts/pretrain/pre_graph_dtw.sh
+bash scripts/pretrain/pre_graph_MSMSDTW-min.sh
 
 # Fine-tune the model (choose script as needed)
-bash scripts/finetune/[28]graph_dtw.sh
+bash scripts/finetune/[31]graph_MSMSDTW-min.sh
 ```
 
 ---

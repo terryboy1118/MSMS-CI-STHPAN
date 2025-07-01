@@ -1,4 +1,4 @@
 CI-STHPAN_self_supervised/src/data/datasets/stock/
-CI-STHPAN_self_supervised/scripts/finetune/
+saved_models/
 *.npy
 *.pt
