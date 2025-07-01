@@ -63,15 +63,29 @@ parser.add_argument('--model_type', type=str, default='based_model', help='for m
 
 args = parser.parse_args()
 print('args:', args)
-args.save_pretrained_model = 'patchtst_pretrained_cw'+str(args.context_points)+'_patch'+str(args.patch_len) \
-                            + '_stride'+str(args.stride) + '_epochs-pretrain' + str(args.n_epochs_pretrain) + \
-                            '_mask' + str(args.mask_ratio) + '_revin' + str(args.revin) + '_ci' + str(args.ci) + \
-                            '_graph' + str(args.graph) + '_rel_type' + str(args.rel_type) + '_k' + str(args.k)
 
-args.save_path = '../finetune/saved_models/' + args.market + '/pretrained/'
-if not os.path.exists(args.save_path): os.makedirs(args.save_path)
-if not os.path.exists(args.save_path+args.save_pretrained_model+'/'): os.makedirs(args.save_path+args.save_pretrained_model+'/')
+# 預訓練模型的資料夾名稱
+args.save_pretrained_model = (
+    'patchtst_pretrained_cw' + str(args.context_points) +
+    '_patch' + str(args.patch_len) +
+    '_stride' + str(args.stride) +
+    '_epochs-pretrain' + str(args.n_epochs_pretrain) +
+    '_mask' + str(args.mask_ratio) +
+    '_revin' + str(args.revin) +
+    '_ci' + str(args.ci) +
+    '_graph' + str(args.graph) +
+    '_rel_type' + str(args.rel_type) +
+    '_k' + str(args.k)
+)
 
+# 取得當前 .py 檔案的資料夾（__file__ 是絕對路徑）
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+# 建立儲存模型的完整路徑（以 .py 檔案為基準）
+args.save_path = os.path.join(current_dir, 'saved_models', args.market, 'pretrained', args.save_pretrained_model)
+
+# 建立資料夾（若尚未存在）
+os.makedirs(args.save_path, exist_ok=True)
 
 # get available GPU devide
 set_device()

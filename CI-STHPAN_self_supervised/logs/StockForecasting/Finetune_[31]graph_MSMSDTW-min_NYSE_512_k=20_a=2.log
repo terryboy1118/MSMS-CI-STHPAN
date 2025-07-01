@@ -1,0 +1,70 @@
+args: Namespace(random_seed=2023, is_finetune=1, is_linear_probe=0, dset_finetune='stock', context_points=512, target_points=1, batch_size=1, num_workers=10, scaler='standard', features='M', market='NYSE', patch_len=12, stride=12, revin=1, ci=1, graph=1, rel_type=7, k=20, n_layers=3, n_heads=16, d_model=128, d_ff=256, dropout=0.2, head_dropout=0.0, n_epochs_finetune=20, lr=0.0001, alpha=2, pretrained_model=None, finetuned_model_id=1, model_type='based_model')
+use GPU: 0
+#datautilis tickers_fname: NYSE_tickers_qualify_dr-0.98_min-5_smooth.csv
+#tickers selected: 1737
+#single EOD data shape: (756, 5)
+#eod_data shape: (1737, 756, 5)
+#masks shape: (1737, 756)
+#ground_truth shape: (1737, 756)
+#base_price shape: (1737, 756)
+#data_stamp shape: (1737, 756, 4)
+#tickers selected: 1737
+#single EOD data shape: (764, 5)
+#eod_data shape: (1737, 764, 5)
+#masks shape: (1737, 764)
+#ground_truth shape: (1737, 764)
+#base_price shape: (1737, 764)
+#data_stamp shape: (1737, 764, 4)
+#tickers selected: 1737
+#single EOD data shape: (749, 5)
+#eod_data shape: (1737, 749, 5)
+#masks shape: (1737, 749)
+#ground_truth shape: (1737, 749)
+#base_price shape: (1737, 749)
+#data_stamp shape: (1737, 749, 4)
+number of patches: 42
+number of model params 1876097
+weights from /home/adam/MSMS-CI-STHPAN/CI-STHPAN_self_supervised/saved_models/NYSE/pretrained/patchtst_pretrained_cw512_patch12_stride12_epochs-pretrain100_mask0.4_revin1_ci1_graph1_rel_type7_k20/model0/model.pth successfully transferred!
+
+suggested_lr 8.111308307896872e-05
+end-to-end finetuning
+#datautilis tickers_fname: NYSE_tickers_qualify_dr-0.98_min-5_smooth.csv
+#tickers selected: 1737
+#single EOD data shape: (756, 5)
+#eod_data shape: (1737, 756, 5)
+#masks shape: (1737, 756)
+#ground_truth shape: (1737, 756)
+#base_price shape: (1737, 756)
+#data_stamp shape: (1737, 756, 4)
+#tickers selected: 1737
+#single EOD data shape: (764, 5)
+#eod_data shape: (1737, 764, 5)
+#masks shape: (1737, 764)
+#ground_truth shape: (1737, 764)
+#base_price shape: (1737, 764)
+#data_stamp shape: (1737, 764, 4)
+#tickers selected: 1737
+#single EOD data shape: (749, 5)
+#eod_data shape: (1737, 749, 5)
+#masks shape: (1737, 749)
+#ground_truth shape: (1737, 749)
+#base_price shape: (1737, 749)
+#data_stamp shape: (1737, 749, 4)
+number of patches: 42
+number of model params 1876097
+weights from /home/adam/MSMS-CI-STHPAN/CI-STHPAN_self_supervised/saved_models/NYSE/pretrained/patchtst_pretrained_cw512_patch12_stride12_epochs-pretrain100_mask0.4_revin1_ci1_graph1_rel_type7_k20/model0/model.pth successfully transferred!
+
+Finetune the head
+          epoch     train_loss     valid_loss           time
+Better model found at epoch 0 with valid_loss value: 0.020850968739343067.
+              0       0.041719       0.020851          00:43
+Better model found at epoch 1 with valid_loss value: 0.007965502284822009.
+              1       0.010469       0.007966          00:43
+Better model found at epoch 2 with valid_loss value: 0.004407141889844622.
+              2       0.006110       0.004407          00:43
+Finetune the entire network
+          epoch     train_loss     valid_loss           time
+finetune completed
+#datautilis tickers_fname: NYSE_tickers_qualify_dr-0.98_min-5_smooth.csv
+#tickers selected: 1737
+#single EOD data shape: (756, 5)

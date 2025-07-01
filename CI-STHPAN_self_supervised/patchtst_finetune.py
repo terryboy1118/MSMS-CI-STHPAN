@@ -74,14 +74,26 @@ np.random.seed(fix_seed)
 
 print('args:', args)
 
-args.save_path = '/home/adam/CI-STHPAN-main/CI-STHPAN_self_supervised/scripts/finetune/saved_models/' + args.market + '/finetuned/'
-if not os.path.exists(args.save_path): os.makedirs(args.save_path)
+# 取得目前這支 .py 檔案的絕對路徑
+current_dir = os.path.dirname(os.path.abspath(__file__))
 
-# pretrained model path
-pretrained_model_path = 'patchtst_pretrained_cw512_patch'+str(args.patch_len)+'_stride'+str(args.stride)+'_epochs-pretrain100_mask0.4_revin'+str(args.revin) + \
-                        '_ci'+str(args.ci)+'_graph'+str(args.graph)+'_rel_type'+str(args.rel_type)+'_k'+str(args.k)+'/model0'
-pretrained_model_path = os.path.join(args.save_path,'..','pretrained',pretrained_model_path,'model.pth')
-args.pretrained_model = pretrained_model_path
+# 設定 finetuned 模型儲存路徑
+args.save_path = os.path.join(current_dir, 'saved_models', args.market, 'finetuned')
+os.makedirs(args.save_path, exist_ok=True)
+
+# 建構預訓練模型的相對子路徑（不用硬編碼 512 等）
+pretrained_model_name = (
+    'patchtst_pretrained_cw512_patch' + str(args.patch_len) +
+    '_stride' + str(args.stride) +
+    '_epochs-pretrain100_mask0.4_revin' + str(args.revin) +
+    '_ci' + str(args.ci) +
+    '_graph' + str(args.graph) +
+    '_rel_type' + str(args.rel_type) +
+    '_k' + str(args.k)
+)
+
+# 構建 pretrained model 絕對路徑
+args.pretrained_model = os.path.join(current_dir, 'saved_models', args.market, 'pretrained', pretrained_model_name, 'model0', 'model.pth')
 
 # transfer learning model path
 # transfer_market = 'NASDAQ'

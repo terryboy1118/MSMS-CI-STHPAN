@@ -175,7 +175,7 @@ def get_dls(params):
                 )
     
     elif params.dset == 'stock':
-        root_path = '/home/adam/CI-STHPAN-main/CI-STHPAN_self_supervised/src/data/datasets/'
+        root_path = '/home/adam/MSMS-CI-STHPAN/CI-STHPAN_self_supervised/src/data/datasets/'
         tickers_fname = params.market + '_tickers_qualify_dr-0.98_min-5_smooth.csv'
         print('#datautilis tickers_fname:',tickers_fname)
 

@@ -1,0 +1,55 @@
+args: Namespace(random_seed=2023, dset_pretrain='stock', context_points=512, target_points=1, batch_size=1, num_workers=10, scaler='standard', features='M', market='NYSE', patch_len=12, stride=12, revin=1, ci=1, graph=1, rel_type=7, k=20, n_layers=3, n_heads=16, d_model=128, d_ff=256, dropout=0.2, head_dropout=0.0, mask_ratio=0.4, n_epochs_pretrain=1, lr=0.0001, pretrained_model_id=1, model_type='based_model')
+use GPU: 0
+#datautilis tickers_fname: NYSE_tickers_qualify_dr-0.98_min-5_smooth.csv
+#tickers selected: 1737
+#single EOD data shape: (756, 5)
+#eod_data shape: (1737, 756, 5)
+#masks shape: (1737, 756)
+#ground_truth shape: (1737, 756)
+#base_price shape: (1737, 756)
+#data_stamp shape: (1737, 756, 4)
+#tickers selected: 1737
+#single EOD data shape: (764, 5)
+#eod_data shape: (1737, 764, 5)
+#masks shape: (1737, 764)
+#ground_truth shape: (1737, 764)
+#base_price shape: (1737, 764)
+#data_stamp shape: (1737, 764, 4)
+#tickers selected: 1737
+#single EOD data shape: (749, 5)
+#eod_data shape: (1737, 749, 5)
+#masks shape: (1737, 749)
+#ground_truth shape: (1737, 749)
+#base_price shape: (1737, 749)
+#data_stamp shape: (1737, 749, 4)
+number of patches: 42
+number of model params 1872268
+suggested_lr 0.0002477076355991711
+#datautilis tickers_fname: NYSE_tickers_qualify_dr-0.98_min-5_smooth.csv
+#tickers selected: 1737
+#single EOD data shape: (756, 5)
+#eod_data shape: (1737, 756, 5)
+#masks shape: (1737, 756)
+#ground_truth shape: (1737, 756)
+#base_price shape: (1737, 756)
+#data_stamp shape: (1737, 756, 4)
+#tickers selected: 1737
+#single EOD data shape: (764, 5)
+#eod_data shape: (1737, 764, 5)
+#masks shape: (1737, 764)
+#ground_truth shape: (1737, 764)
+#base_price shape: (1737, 764)
+#data_stamp shape: (1737, 764, 4)
+#tickers selected: 1737
+#single EOD data shape: (749, 5)
+#eod_data shape: (1737, 749, 5)
+#masks shape: (1737, 749)
+#ground_truth shape: (1737, 749)
+#base_price shape: (1737, 749)
+#data_stamp shape: (1737, 749, 4)
+number of patches: 42
+number of model params 1872268
+          epoch     train_loss     valid_loss           time
+Better model found at epoch 0 with valid_loss value: 0.1942326227823893.
+              0       0.429319       0.194233          01:46
+itr: 0  pretraining completed！ time:250

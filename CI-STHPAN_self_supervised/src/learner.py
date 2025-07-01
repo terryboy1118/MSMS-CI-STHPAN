@@ -232,10 +232,10 @@ class Learner(GetAttr):
                 # channel independent
                 if self.ci == 1:
                     if flag == 'train':
-                        file_path = f"/home/adam/CI-STHPAN-main/CI-STHPAN_self_supervised/src/data/datasets/stock/relation/MSMSDTW-min/dtw_train_matrix_min_{self.market}_binary.npy"
+                        file_path = f"/home/adam/MSMS-CI-STHPAN/CI-STHPAN_self_supervised/src/data/datasets/stock/relation/MSMSDTW-min/dtw_train_matrix_min_{self.market.lower()}_binary.npy"
                         hyperedge_index = np.load(file_path)
                     else:
-                        file_path = f"/home/adam/CI-STHPAN-main/CI-STHPAN_self_supervised/src/data/datasets/stock/relation/MSMSDTW-min/dtw_valid_matrix_min_{self.market}_binary.npy"
+                        file_path = f"/home/adam/MSMS-CI-STHPAN/CI-STHPAN_self_supervised/src/data/datasets/stock/relation/MSMSDTW-min/dtw_valid_matrix_min_{self.market.lower()}_binary.npy"
                         hyperedge_index = np.load(file_path)
                 # channel mixing
                 else:
@@ -245,10 +245,10 @@ class Learner(GetAttr):
                 # channel independent
                 if self.ci == 1:
                     if flag == 'train':
-                        file_path = f"/home/adam/CI-STHPAN-main/CI-STHPAN_self_supervised/src/data/datasets/stock/relation/MSMSDTW-mean/dtw_train_matrix_mean_{self.market}_binary_ci.npy"
+                        file_path = f"/home/adam/MSMS-CI-STHPAN/CI-STHPAN_self_supervised/src/data/datasets/stock/relation/MSMSDTW-mean/dtw_train_matrix_mean_{self.market.lower()}_binary_ci.npy"
                         hyperedge_index = np.load(file_path)
                     else:
-                        file_path = f"/home/adam/CI-STHPAN-main/CI-STHPAN_self_supervised/src/data/datasets/stock/relation/MSMSDTW-mean/dtw_valid_matrix_mean_{self.market}_binary_ci.npy"
+                        file_path = f"/home/adam/MSMS-CI-STHPAN/CI-STHPAN_self_supervised/src/data/datasets/stock/relation/MSMSDTW-mean/dtw_valid_matrix_mean_{self.market.lower()}_binary_ci.npy"
                         hyperedge_index = np.load(file_path)
                 # channel mixing
                 else:

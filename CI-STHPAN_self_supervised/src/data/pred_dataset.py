@@ -12,7 +12,7 @@ import warnings
 import matplotlib.pyplot as plt
 warnings.filterwarnings('ignore')
 from matplotlib import colors as mcolors
-plot_path = '/home/adam/CI-STHPAN-main/nasdaq_all/pic'
+plot_path = '/home/adam/MSMS-CI-STHPAN/nasdaq_all/pic'
 os.makedirs(plot_path, exist_ok=True)  # 如果目錄不存在，則創建
 from matplotlib import font_manager
 class Dataset_ETT_hour(Dataset):
@@ -476,7 +476,7 @@ class Dataset_Stock(Dataset):
         data=tsne_results,
         label_list=all_label_seg,
         title='_nasdaq_tsne',
-        folder_name='/home/adam/CI-STHPAN-main/nasdaq_all/pic_tsne'
+        folder_name='/home/adam/MSMS-CI-STHPAN/nasdaq_all/pic_tsne'
         )
 
         '''
@@ -1135,26 +1135,22 @@ def interpolation(data):
     #print(interpolated_data)
     return interpolated_data
 
-from cuml.manifold import TSNE
-import cupy as cp  # GPU 上的 numpy
+from sklearn.manifold import TSNE
 
-def TSNE_run_GPU(data_seg):
-    # 假設 interpolation(data_seg) 回傳 (N, D) 的 2D array
-    interpolated_data = interpolation(data_seg)    # 仍使用你原本的處理方法
-    X = cp.asarray(interpolated_data)              # 轉成 GPU cupy 陣列
-
+def TSNE_run_CPU(data_seg):
+    interpolated_data = interpolation(data_seg)  # 假設回傳 shape = [N, D]
+    
     tsne = TSNE(
         n_components=2,
         perplexity=40,
-        n_iter=500,              # GPU 快，可以拉長
+        n_iter=1000,
         init='pca',
         random_state=42,
-        verbose=True
+        verbose=1,
+        n_jobs=-1
     )
 
-    tsne_results = tsne.fit_transform(X)           # GPU 上降維完成
-    tsne_results = cp.asnumpy(tsne_results)        # 若要畫圖，要轉回 numpy
-
+    tsne_results = tsne.fit_transform(interpolated_data)
     return tsne_results
 
 
