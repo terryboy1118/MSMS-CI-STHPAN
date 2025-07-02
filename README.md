@@ -35,29 +35,33 @@ pip install -r requirements.txt
 
 ## Implementation Steps
 
-# Step 1: Constructing MSMSDTW Similarity
-Use our core method to compute multi-scale DTW-based stock similarity:
-  python MSMSDTW.py
+```bash
+# Step 1: Construct MSMSDTW Similarity
+# (Use our core method to compute multi-scale DTW-based stock similarity)
 
-# Step 2: Generating Top-K Adjacency Binary Matrix
-Transform similarity matrices into binary adjacency matrices by selecting top-K most similar stocks per feature:
-  python generate_topk_adjacency.py
+python MSMSDTW.py
 
+# Step 2: Generate Top-K Adjacency Binary Matrix
+# (Transform similarity matrices into binary adjacency matrices 
+#  by selecting the top-K most similar stocks per feature)
+
+python generate_topk_adjacency.py
+
+```
 ## Quick Example (Using Preprocessed In NAS)
 If you have already computed the MSMSDTW similarity matrices and binary adjacency matrices, you can directly copy the preprocessed dataset from NAS and start training and finetuning:
+```bash
+# Step 1: Copy preprocessed dataset from NAS
+cp /NAS/DATA/M11215104/datasets.zip ./CI-STHPAN_self_supervised/src/data/
+cd CI-STHPAN_self_supervised/src/data/
+unzip -o datasets.zip
 
-# step 1: Copy Preprocessed Data from NAS
-  cp /NAS/DATA/M11215104/datasets.zip ./CI-STHPAN_self_supervised/src/data/
-  cd CI-STHPAN_self_supervised/src/data/
-  unzip -o datasets.zip
+# Step 2: Pre-train the model
+cd ../../
+bash scripts/pretrain/pre_graph_MSMSDTW-min.sh
 
-# step 2: Pre-train the model
-  cd CI-STHPAN_self_supervised
-  bash scripts/pretrain/pre_graph_MSMSDTW-min.sh
-
-# step 3: Fine-tune the model 
-  cd CI-STHPAN_self_supervised
-  bash scripts/finetune/[31]graph_MSMSDTW-min.sh
+# Step 3: Fine-tune the model
+bash scripts/finetune/[31]graph_MSMSDTW-min.sh
 ```
 
 
