@@ -24,7 +24,7 @@ def inspect_binary_matrix(binary_matrix, feature_index=0, row_idx=0, col_idx=0):
     print(f"第 {col_idx} 列有 {len(col_ones)} 個 1，索引位置：{col_ones.tolist()}")
 
 if __name__ == "__main__":
-    base_dir = "/home/adam/CI-STHPAN-main/CI-STHPAN_self_supervised/src/data/datasets/stock"
+    base_dir = "CI-STHPAN_self_supervised/src/data/datasets/stock"
     methods = ["min", "mean"]
     datasets = ["nyse", "nasdaq"]
     modes = ["train", "valid"]

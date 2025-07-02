@@ -26,7 +26,7 @@ def run_dtw_matrix(method: str, dataset: str, mode: str):
 
     # 儲存
     os.makedirs("results", exist_ok=True)
-    output_path = f"/home/adam/CI-STHPAN-main/CI-STHPAN_self_supervised/src/data/datasets/stock/{dataset}_all/{dataset}_relation/dtw_{mode}_matrix_{method}_{dataset}.npy"
+    output_path = f"CI-STHPAN_self_supervised/src/data/datasets/stock/{dataset}_all/{dataset}_relation/dtw_{mode}_matrix_{method}_{dataset}.npy"
 
     np.save(output_path, dtw_result)
     print(f"✅ 儲存完成：{output_path}，shape: {dtw_result.shape}")

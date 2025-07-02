@@ -52,12 +52,12 @@ python generate_topk_adjacency.py
 If you have already computed the MSMSDTW similarity matrices and binary adjacency matrices, you can directly copy the preprocessed dataset from NAS and start training and finetuning:
 ```bash
 # Step 1: Copy preprocessed dataset from NAS
-cp /NAS/DATA/M11215104/datasets.zip ./CI-STHPAN_self_supervised/src/data/
-cd CI-STHPAN_self_supervised/src/data/
-unzip -o datasets.zip
+ /NAS/DATA/M11215104/datasets.zip 
+ Please unzip to this folder :  CI-STHPAN_self_supervised/src/data
+
 
 # Step 2: Pre-train the model
-cd ../../
+cd CI-STHPAN_self_supervised
 bash scripts/pretrain/pre_graph_MSMSDTW-min.sh
 
 # Step 3: Fine-tune the model
