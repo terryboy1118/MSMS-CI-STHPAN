@@ -33,7 +33,7 @@ python -u patchtst_pretrain.py \
       --d_ff 256 \
       --dropout 0.2 \
       --head_dropout 0 \
-      --n_epochs_pretrain 1 \
+      --n_epochs_pretrain 100 \
       --batch_size 1 \
       --lr 0.0001 >logs/StockForecasting/$model_name'_'$model_id_name'_'$seq_len'_'$k.log
 done

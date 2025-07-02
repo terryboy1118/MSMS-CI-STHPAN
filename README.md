@@ -1,66 +1,4 @@
 # MSMS-CI-STHPAN
-
-Quantitative stock selection remains a complex challenge due to the multi-structural and non-stationary nature of financial markets. To address this, we propose **MSMS-DTW** (Market-Segmented Multi-Scale Dynamic Time Warping), a similarity-fusion method that enhances temporal alignment and interpretability.
-
-MSMS-DTW segments the market timeline using the **turning points of a benchmark stock** and restricts DTW computation to stocks within the same segment, thus preserving **phase-specific dynamics**.
-
-By incorporating **multi-scale segmentation** and **DTW normalization**, our method captures localized synchronization patterns and mitigates the temporal-distortion issues present in global DTW. We further integrate MSMS-DTW into the **CI-STHPAN** (Channel-Independent Spatio-Temporal Hypergraph Pretrained Attention Network) framework, leveraging channel-wise independence and hypergraph structures for robust stock-relation modeling.
-
-> 📈 **On the NASDAQ dataset**, the enhanced model achieves  
-> **Internal Rate of Return (IRR):** 0.92297  
-> **Sharpe Ratio (SR):** 2.20432  
-> — significantly outperforming diverse baselines.
-
----
-
-## 🔍 Keywords
-
-`Stock Selection` · `Dynamic Time Warping` · `Market Segmentation` · `Hypergraph Neural Network` · `Transformer`
-
----
-
-## 📚 Table of Contents
-
-- [📦 Installation](#-installation)  
-- [🚀 Quick Example](#-quick-example)  
-- [🧠 Model Overview](#-model-overview)  
-- [📊 Experimental Results](#-experimental-results)  
-- [📁 Project Structure](#-project-structure)
-
----
-
-## 📦 Installation
-
-```bash
-# 1. Create and activate conda env
-conda create -n MSMSDTW3 python=3.10.12
-conda activate MSMSDTW3
-
-# 2. Install PyTorch (CUDA 11.8)
-conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-# 3. Install PyTorch Geometric (PyG)
-conda install pyg -c pyg
-
-# 4. Other Python packages
-pip install -r requirements.txt
-```
-
----
-
-## 🚀 Quick Example
-
-Demonstration of how to pre-train and fine-tune the model on hypergraphs constructed using Wiki-based relations (NASDAQ dataset).
-
-```bash
-# Pre-train the model
-cd CI-STHPAN_self_supervised
-bash scripts/pretrain/pre_graph_MSMSDTW-min.sh
-
-# Fine-tune the model (choose script as needed)
-bash scripts/finetune/[31]graph_MSMSDTW-min.sh
-```
-
 ---
 
 ## 🧠 Model Overview
@@ -73,7 +11,56 @@ bash scripts/finetune/[31]graph_MSMSDTW-min.sh
 - **MSMS-DTW** handles market-aware segmentation and similarity measurement.
 - The constructed **hypergraph** captures multi-stock relations with higher-order dynamics.
 
+Quantitative stock selection remains a complex challenge due to the multi-structural and non-stationary nature of financial markets. To address this, we propose MSMS-DTW (Market-Segmented Multi-Scale Dynamic Time Warping), a similarity-fusion method that enhances temporal alignment and interpretability.
+
+MSMS-DTW segments the market timeline using the turning points of a benchmark stock and restricts DTW computation to stocks within the same segment, thus preserving phase-specific dynamics.
+
+By incorporating multi-scale segmentation and DTW normalization, our method captures localized synchronization patterns and mitigates the temporal-distortion issues present in global DTW. We further integrate MSMS-DTW into the CI-STHPAN (Channel-Independent Spatio-Temporal Hypergraph Pretrained Attention Network) framework, leveraging channel-wise independence and hypergraph structures for robust stock-relation modeling.
+
+## 📦 Installation
+
+```bash
+# 1. Create and activate conda env
+conda create -n MSMSDTW python=3.10.12
+conda activate MSMSDTW
+
+# 2. Install PyTorch (CUDA 11.8)
+conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+
+# 4. Other Python packages
+pip install -r requirements.txt
+```
+
 ---
+
+## Implementation Steps
+
+# Step 1: Constructing MSMSDTW Similarity
+Use our core method to compute multi-scale DTW-based stock similarity:
+  python MSMSDTW.py
+
+# Step 2: Generating Top-K Adjacency Binary Matrix
+Transform similarity matrices into binary adjacency matrices by selecting top-K most similar stocks per feature:
+  python generate_topk_adjacency.py
+
+## Quick Example (Using Preprocessed In NAS)
+If you have already computed the MSMSDTW similarity matrices and binary adjacency matrices, you can directly copy the preprocessed dataset from NAS and start training and finetuning:
+
+# step 1: Copy Preprocessed Data from NAS
+  cp /NAS/DATA/M11215104/datasets.zip ./CI-STHPAN_self_supervised/src/data/
+  cd CI-STHPAN_self_supervised/src/data/
+  unzip -o datasets.zip
+
+# step 2: Pre-train the model
+  cd CI-STHPAN_self_supervised
+  bash scripts/pretrain/pre_graph_MSMSDTW-min.sh
+
+# step 3: Fine-tune the model 
+  cd CI-STHPAN_self_supervised
+  bash scripts/finetune/[31]graph_MSMSDTW-min.sh
+```
+
+
 
 ## 📊 Experimental Results
 
@@ -87,4 +74,4 @@ bash scripts/finetune/[31]graph_MSMSDTW-min.sh
 > 🔬 Metrics include Internal Rate of Return (IRR) and Sharpe Ratio (SR). Experiments are conducted under fixed seeds and repeated runs.
 ---
 
-For any questions, please contact `lin.syuan@example.com`. Contributions and pull requests are welcome!
+For any questions, please contact `Adam6833@gmail.com.com`. Contributions and pull requests are welcome!

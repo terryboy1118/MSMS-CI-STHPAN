@@ -2,3 +2,5 @@ CI-STHPAN_self_supervised/src/data/datasets/stock/
 saved_models/
 *.npy
 *.pt
+__pycache__/
+logs/

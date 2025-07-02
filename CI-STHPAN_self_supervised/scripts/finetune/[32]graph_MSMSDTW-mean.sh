@@ -11,8 +11,8 @@ pred_len=1
 model_name=Finetune_[32]graph_MSMSDTW-mean
 # model_name=Finetune_[31]transfer
 
-model_id_name=NASDAQ
-# model_id_name=NYSE
+# model_id_name=NASDAQ
+model_id_name=NYSE
 
 data_name=stock
 
@@ -22,7 +22,7 @@ for k in 20
 do
     for alpha in 2
     do
-    python -u /home/adam/CI-STHPAN-main/CI-STHPAN_self_supervised/patchtst_finetune.py \
+    python -u /home/adam/MSMS-CI-STHPAN/CI-STHPAN_self_supervised/patchtst_finetune.py \
         --random_seed $random_seed \
         --market $model_id_name \
         --is_finetune 1 \
